@@ -27,7 +27,7 @@ func work() {
   body, _ := ioutil.ReadAll(resp.Body)
   err = json.Unmarshal(body, &data)
   fmt.Println("\n\nÚltima apuração em:", data["ht"] )
-  fmt.Printf("Votos apurados: %.2f%% \n", percent(data["e"], data["ea"]))
+  fmt.Printf("Votos apurados: %.5f%% \n", percent(data["e"], data["ea"]))
 
   candidates, _ := data["cand"].([]interface{})
 
