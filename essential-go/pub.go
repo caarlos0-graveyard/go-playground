@@ -1,7 +1,6 @@
 package main
 
 import (
-	"fmt"
 	"github.com/caarlos0/go-playground/essential-go/pages"
 	"log"
 	"os"
@@ -16,5 +15,8 @@ func main() {
 	if err != nil {
 		log.Fatalln(err)
 	}
-	fmt.Println(p)
+	err = p.Render("layout.html", os.Stdout)
+	if err != nil {
+		log.Fatalln(err)
+	}
 }

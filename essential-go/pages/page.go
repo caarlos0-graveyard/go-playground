@@ -2,9 +2,9 @@ package pages
 
 import (
 	"github.com/russross/blackfriday"
-	// "io"
+	"io"
 	"io/ioutil"
-	// "text/template"
+	"text/template"
 )
 
 type Page struct {
@@ -12,6 +12,14 @@ type Page struct {
 	Author string
 	HTML   string
 	File   string
+}
+
+func (p *Page) Render(layout string, w io.Writer) error {
+	t, err := template.ParseFiles(layout)
+	if err != nil {
+		return err
+	}
+	return t.Execute(w, p)
 }
 
 func (p *Page) load() error {
