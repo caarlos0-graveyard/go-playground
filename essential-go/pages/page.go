@@ -22,8 +22,8 @@ func (p *Page) Render(layout string, w io.Writer) error {
 	return t.Execute(w, p)
 }
 
-func (p *Page) load() error {
-	c, err := LoadConfig("config.json")
+func (p *Page) load(config string) error {
+	c, err := LoadConfig(config)
 	if err != nil {
 		return err
 	}
@@ -37,7 +37,7 @@ func (p *Page) load() error {
 	return nil
 }
 
-func NewPage(filename string) (*Page, error) {
+func NewPage(filename string, config string) (*Page, error) {
 	p := &Page{File: filename}
-	return p, p.load()
+	return p, p.load(config)
 }
